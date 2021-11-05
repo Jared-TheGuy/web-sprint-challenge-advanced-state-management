@@ -1,7 +1,8 @@
-import { FETCH_START, FETCH_SUCCESS,FETCH_ERROR } from "../actions";
+import { FETCH_START, FETCH_SUCCESS,FETCH_ERROR, ADD_SMURF, CHANGE_ERROR } from "../actions";
 
 
-export const initialState = [{
+export const initialState = { 
+    smurfList: [{
         description: "Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.",
         id: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
         name: "Poppa Smurf",
@@ -16,8 +17,10 @@ export const initialState = [{
         nickname: "Smurfette",
         position: "Beautician"
     }],
-    isAppLoading = false,
-    errorMs = "Nope"
+    isAppLoading: false,
+    errorMs: ""
+}
+    
 
 
 const reducer = (state = initialState, action)=>{
@@ -27,14 +30,25 @@ const reducer = (state = initialState, action)=>{
                 ...state,
                 isAppLoading: true
             }
-            case FETCH_SUCCESS:
-                return {
-                    ...state
-                }
-                case FETCH_ERROR:
-                    return {
-                        ...state
-                    }
+        case FETCH_SUCCESS:
+             return {
+                ...state,
+                smurfList: action.payload,
+                isAppLoading: false
+            }
+        case FETCH_ERROR:
+            return {
+                ...state
+            }
+        case ADD_SMURF: 
+            return {
+                ...state,
+                isAppLoading: false
+            }
+        case CHANGE_ERROR:
+            return {
+                ...state
+            }
         default: 
             return state;
     }
