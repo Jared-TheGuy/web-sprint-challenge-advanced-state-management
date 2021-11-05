@@ -14,7 +14,7 @@ let smurfs = [
     position:'Beautician',
     nickname: 'Smurfette',
     description: 'Smurfette\'s role in the village is that of any other smurf; chores, and helping out where she can, but for her specifically, she is often seen to be very active in organizing events.'
-  }
+  },
 ];
 
 const sendUserError = (msg, ctx, res) => {

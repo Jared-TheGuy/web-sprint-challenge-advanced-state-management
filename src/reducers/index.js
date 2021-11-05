@@ -1,4 +1,5 @@
 import { FETCH_START, FETCH_SUCCESS,FETCH_ERROR, ADD_SMURF, CHANGE_ERROR } from "../actions";
+import axios from "axios";
 
 
 export const initialState = { 
@@ -18,13 +19,12 @@ export const initialState = {
         position: "Beautician"
     }],
     isAppLoading: false,
-    errorMs: ""
+    errorMessage: ""
 }
     
 
-
 const reducer = (state = initialState, action)=>{
-    switch(action.case) {
+    switch(action.type) {
         case FETCH_START: 
             return {
                 ...state,
@@ -38,16 +38,21 @@ const reducer = (state = initialState, action)=>{
             }
         case FETCH_ERROR:
             return {
-                ...state
+                ...state,
+                isAppLoading: false,
+                errorMessage: action.payload
             }
         case ADD_SMURF: 
+        const newSmurf = {...action.payload, id: Date.time}
+        axios.post('http://localhost:3333/smurfs', newSmurf)
+
             return {
-                ...state,
-                isAppLoading: false
+                ...state
             }
         case CHANGE_ERROR:
             return {
-                ...state
+                ...state,
+                errorMessage: action.payload
             }
         default: 
             return state;

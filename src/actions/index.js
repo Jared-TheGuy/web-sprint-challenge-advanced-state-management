@@ -1,5 +1,19 @@
 import axios from 'axios';
 
+export const getSmurfs = () => {
+    return (dispatch) => {
+        dispatch(fetchStart());
+
+        axios.get('http://localhost:3333/smurfs')
+        .then(resp => {
+            dispatch(fetchSuccess(resp.data));
+        })
+        .catch(err => {
+            dispatch(fetchError(err));
+        })
+    }
+}
+
 export const FETCH_START = "FETCH_START";
 
 export const fetchStart = () => {
@@ -26,8 +40,8 @@ export const addSmurf = (newSmurf) => {
 
 export const CHANGE_ERROR = "CHANGE_ERROR";
 
-export const changeError = (error) => {
-    return ({type: CHANGE_ERROR, payload: error});
+export const changeError = (word) => {
+    return ({type: CHANGE_ERROR, payload:word});
 }
 
 //Task List:

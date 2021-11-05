@@ -8,8 +8,6 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
-axios.get('http://localhost:3333/smurfs').then((resp) => {console.log(resp.data)})
-
 class App extends Component {
 
   
