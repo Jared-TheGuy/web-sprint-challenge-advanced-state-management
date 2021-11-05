@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import AddForm from './components/AddForm';
 import SmurfList from './components/SmurfList';
@@ -7,7 +8,11 @@ import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
+axios.get('http://localhost:3333/smurfs').then((resp) => {console.log(resp.data)})
+
 class App extends Component {
+
+  
   render() {
     return (
       <div className="App">
